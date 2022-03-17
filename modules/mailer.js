@@ -12,8 +12,11 @@ var transport = nodemailer.createTransport({
 });
 
 const hbsConfig = {
-  viewEngine: 'handlebars',
-  viewPath: path.resolve('./resources/mail'),
+  viewEngine: {
+    defaultLayout: undefined,
+    partialsDir: path.resolve('./resources/mail/'),
+  },
+  viewPath: path.resolve('./resources/mail/'),
   extName: '.html',
 };
 
