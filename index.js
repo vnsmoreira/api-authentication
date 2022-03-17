@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/auth', require('./app/routes/auth.routes'));
+require('./app/routes/auth.routes')(app);
+require('./app/routes/project.routes')(app);
 
 try {
   onMongoConnect(() => app.listen(5000));
