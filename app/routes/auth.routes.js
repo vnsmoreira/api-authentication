@@ -6,4 +6,4 @@ const router = Router();
 router.post('/register', authController.register_POST);
 router.post('/authenticate', authController.authenticate_POST);
 
-module.exports = router;
+module.exports = app => app.use('/auth', router);
