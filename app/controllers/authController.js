@@ -4,7 +4,9 @@ const { generateToken } = require('../../config/jwt');
 const crypto = require('crypto');
 const mailer = require('../../modules/mailer');
 
-const register_POST = async (req, res) => {
+const controller = {};
+
+controller.register_POST = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -25,7 +27,7 @@ const register_POST = async (req, res) => {
   }
 };
 
-const authenticate_POST = async (req, res) => {
+controller.authenticate_POST = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -50,7 +52,7 @@ const authenticate_POST = async (req, res) => {
   }
 };
 
-const forgot_password_POST = async (req, res) => {
+controller.forgot_password_POST = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -92,7 +94,7 @@ const forgot_password_POST = async (req, res) => {
   }
 };
 
-const reset_password_POST = async (req, res) => {
+controller.reset_password_POST = async (req, res) => {
   const { email, token, password } = req.body;
 
   try {
@@ -122,4 +124,4 @@ const reset_password_POST = async (req, res) => {
   }
 };
 
-module.exports = { register_POST, authenticate_POST, forgot_password_POST, reset_password_POST };
+module.exports = controller;
