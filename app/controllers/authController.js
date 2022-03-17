@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const { generateToken } = require('../../config/jwt');
 
 const register_POST = async (req, res) => {
   try {
@@ -34,7 +35,10 @@ const authenticate_POST = async (req, res) => {
 
   user.password = undefined;
 
-  res.send({ user });
+  res.send({
+    user,
+    token: generateToken({ id: user.id }),
+  });
 };
 
 module.exports = { register_POST, authenticate_POST };
