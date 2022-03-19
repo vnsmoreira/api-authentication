@@ -5,7 +5,7 @@ const controller = {};
 
 controller.listProjects_GET = async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().populate('user');
 
     return res.send({ projects });
   } catch (error) {
