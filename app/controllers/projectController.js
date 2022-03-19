@@ -10,7 +10,14 @@ controller.showProject_GET = async (req, res) => {
   res.json({ user: req.userId });
 };
 controller.createProject_POST = async (req, res) => {
-  res.json({ user: req.userId });
+  try {
+    const project = await Project.create(req.body);
+
+    return res.send({ project });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send({ error: 'Error creating new Project' });
+  }
 };
 controller.updateProject_PUT = async (req, res) => {
   res.json({ user: req.userId });
