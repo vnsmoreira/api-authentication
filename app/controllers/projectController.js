@@ -17,7 +17,7 @@ controller.showProject_GET = async (req, res) => {
 };
 controller.createProject_POST = async (req, res) => {
   try {
-    const project = await Project.create(req.body);
+    const project = await Project.create({ ...req.body, user: req.userId });
 
     return res.send({ project });
   } catch (error) {
