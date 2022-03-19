@@ -89,4 +89,14 @@ controller.deleteProject_DELETE = async (req, res) => {
   }
 };
 
+controller.deleteProjects_DELETE = async (req, res) => {
+  try {
+    await Project.deleteMany()
+
+    return res.send();
+  } catch (error) {
+    return res.status(400).send({ error: 'Error deleting Project' });
+  }
+};
+
 module.exports = controller;
