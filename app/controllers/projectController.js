@@ -5,7 +5,7 @@ const controller = {};
 
 controller.listProjects_GET = async (req, res) => {
   try {
-    const projects = await Project.find().populate(['user','tasks']);
+    const projects = await Project.find().populate(['user', 'tasks']);
 
     return res.send({ projects });
   } catch (error) {
@@ -15,7 +15,7 @@ controller.listProjects_GET = async (req, res) => {
 
 controller.showProject_GET = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.projectId).populate(['user','tasks']);
+    const project = await Project.findById(req.params.projectId).populate(['user', 'tasks']);
 
     return res.send({ project });
   } catch (error) {
@@ -74,7 +74,7 @@ controller.updateProject_PUT = async (req, res) => {
 
     return res.send({ project });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(400).send({ error: 'Error updating new Project' });
   }
 };
@@ -91,7 +91,8 @@ controller.deleteProject_DELETE = async (req, res) => {
 
 controller.deleteProjects_DELETE = async (req, res) => {
   try {
-    await Project.deleteMany()
+    await Project.deleteMany();
+    await Task.deleteMany();
 
     return res.send();
   } catch (error) {
