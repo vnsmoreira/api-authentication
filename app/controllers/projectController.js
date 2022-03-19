@@ -13,7 +13,13 @@ controller.listProjects_GET = async (req, res) => {
   }
 };
 controller.showProject_GET = async (req, res) => {
-  res.json({ user: req.userId });
+  try {
+    const project = await Project.findById(req.params.projectId).populate('user');
+
+    return res.send({ project });
+  } catch (error) {
+    return res.status(400).send({ error: 'Error loading project' });
+  }
 };
 controller.createProject_POST = async (req, res) => {
   try {
