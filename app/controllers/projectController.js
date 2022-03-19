@@ -4,7 +4,13 @@ const Task = require('../models/task');
 const controller = {};
 
 controller.listProjects_GET = async (req, res) => {
-  res.json({ user: req.userId });
+  try {
+    const projects = await Project.find();
+
+    return res.send({ projects });
+  } catch (error) {
+    return res.status(400).send({ error: 'Error listing projects' });
+  }
 };
 controller.showProject_GET = async (req, res) => {
   res.json({ user: req.userId });
