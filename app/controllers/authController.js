@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('../../config/jwt');
+const { generateToken } = require('../../modules/jwt');
 const crypto = require('crypto');
 const mailer = require('../../modules/mailer');
 
